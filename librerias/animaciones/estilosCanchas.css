@@ -1,0 +1,108 @@
+.row{
+    margin-bottom: 70px;
+}
+
+.navbar{
+    font-size: 30px;
+}
+
+.imagen{
+    background-image: url(../images/james_rodriguez.png);
+    -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size:cover;
+        background-size: cover;
+        background-color:#fff;
+        height: 651px;
+        
+}
+
+.col-sm-4{
+   height: 651px;
+}
+
+.zoom{
+    transition: 1.5s ease;
+    -moz-transition: 1.5s ease; /* Firefox */
+    -webkit-transition: 1.5s ease; /* Chrome - Safari */
+    -o-transition: 1.5s ease; /* Opera */
+}
+.zoom:hover{
+    transform : scale(1.1);
+    -moz-transform : scale(1.1); /* Firefox */
+    -webkit-transform : scale(1.1); /* Chrome - Safari */
+    -o-transform : scale(1.1); /* Opera */
+    -ms-transform : scale(1.1); /* IE9 */
+}
+
+.reserva{
+    background-image: url(../images/sintetica.jpg);
+    background-size: cover;
+    background-color: transparent;
+    height: 140px;
+    width: 100%;
+    margin-bottom: 40px;
+    margin-top: -50px;
+    text-align: center;
+    justify-content: center;
+    font-size: 50px;
+    padding-top: 30px;
+    
+    
+    
+}
+
+a{
+    color: #ffffff;
+}
+
+
+   
+
+.reservas{
+    margin-left: 40px;
+    height:  662px;
+
+}
+
+.form-control{
+    width: 70%;
+    margin: 5px;
+    color: #222;
+    opacity: 0.5;
+    box-shadow: 10px 6px 20px 0px rgba(0,0,0,0.45);
+}
+
+.fondo {
+    height: 662px;
+    background-image: url(../images/juan.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size:cover;
+    background-size: cover;
+    background-color:#222;
+    opacity: 0.9;
+    padding: 40px;
+    padding-left: 60px;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 5px;
+
+}
+
+.form{
+    margin-left: 65px;
+    margin-top: 30px;
+    width: 500px;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  
+    margin-left: 65px;
+}
+
+@media screen and (max-width: 767px) {
+    .col-sm-8{
+        margin-top: 60px;
+    }
+}

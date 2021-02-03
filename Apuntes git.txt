@@ -1,0 +1,19 @@
+Usuario:
+jhongil18
+
+Correo:
+jhongil.983@gmail.com
+
+Apuntes Git--------------------------------------------
+git clone: Para clonar repositorio
+git branch: crear rama
+git branch -a: mostrar ramas
+git add .: guardar cambios
+git status: muestra cambios guardados
+git commit -m "nombrar el cambio efectuado"
+git push origin "nombre de la rama": subir archivos 
+git checkout "nombre de la rama": pasar a la rama "#"
+git merge "nombre de la rama": pasar archivos de tal rama "#"
+git pull: actualizar mi repositorio
+cd: ingresar
+cd.. :retroceder
