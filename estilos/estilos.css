@@ -193,3 +193,16 @@ h2{
 .carousel-inner {
     height: 500px;
 }
+
+/************** Compras ****************/
+.descProducto{
+    margin: -15px;
+    margin-top: 45px;
+    margin-bottom: 0px;
+    background-color: rgba(238, 238, 238, 0.459);
+}
+
+#descripcion{
+    padding: 50px;
+    line-height: 1.5;
+}

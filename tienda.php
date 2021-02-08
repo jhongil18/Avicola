@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comercializacion Avicola</title>
+    <link rel="icon" type="image/png" href="img/iconoNavbar.png" sizes="16x16">
     <link rel="stylesheet" href="estilos/estilos.css">
     <link rel="stylesheet" href="frameworks/bootstrap-4.5.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="librerias/fontawesome-free-5.15.1-web/css/all.min.css">
+    <link rel="stylesheet" href="librerias/animaciones/animate.css">
   </head>
   <body>
     <!-- Navbar -->
@@ -31,6 +33,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="contactenos.php">Contactenos</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="productos.php">Nuestros productos</a>
+              </li>
               <li class="nav-item active">
                 <a class="nav-link" href="tienda.php">Compras</a>
               </li>
@@ -41,17 +46,34 @@
   
     <!-- Descripcion Producto -->
     <div class="descProducto">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <img src="">
-          </div>
-          <div class="col">
+      <div class="container-fluid">
+        <div class="animated fadeInDown">
+          <div class="row">
+            <?php
+              if(isset($_GET['img']) && isset($_GET['nombre']) && isset($_GET['valor']) && isset($_GET['descripcion'])){ 
+                $img = filter_input(INPUT_GET,"img",FILTER_SANITIZE_STRING);
+                $nombre = filter_input(INPUT_GET,"nombre",FILTER_SANITIZE_STRING);
+                $valor = filter_input(INPUT_GET,"valor",FILTER_SANITIZE_STRING);
+                $descripcion = filter_input(INPUT_GET,"descripcion",FILTER_SANITIZE_STRING); ?>
+                
+                <div class="col-md-6">
+                  <img class="card-img-top" src="<?php echo $img; ?>" style="width:100%">
+                </div>
+                <div class="col-md-6" id="descripcion">
+                  <h3> <?php echo $nombre; ?> </h3>
+                  <hr class="teal accent-7 mb-4 mt-0 d-inline-block" style="width: 70%;">
+                  <h5><b>Descripcion</b></h5>
+                  <p><?php echo $descripcion; ?> </p>
+                  <h5><b>Precio</b></h5>
+                  <div class="precio"> <?php echo $valor; ?> $</div>
+                  <br><a href="productos.php" class="btn btn-secondary">Ver mas Productos</a>
+                  <a href="" class="btn btn-info">Agregar al Carrito</a>
+                </div>
+        <?php }?>
           </div>
         </div>
       </div>
     </div>
-  
   </body>
 
   <!-- Footer -->
@@ -75,7 +97,7 @@
 
     <div class="container text-center text-md-left mt-5">
       <div class="row">
-        <div class="col-md-3 col-lg-4 col-xl-5 mb-4">
+        <div class="col-md-4 col-lg-4 col-xl-5 mb-4">
           <h6>COMERCIALIZACION AVICOLA</h6>
           <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 100px;">
           <div class="textAvicola">
@@ -84,15 +106,7 @@
             y unos productos de máxima calidad.
           </div>
         </div>
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          <h6>PRODUCTOS</h6>
-          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 100px;">
-          <p> Ofrecemos pollos desde: </p>
-          <p><a class="dark-grey-text" href="#descSemanas">1 Semana</a></p>
-          <p><a class="dark-grey-text" href="#descSemanas">5 Semanas</a></p>
-          <p><a class="dark-grey-text" href="#descSemanas">10 Semanas</a></p>
-        </div>
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-md-0 mb-4">
+        <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mb-md-0 mb-4">
           <h6>CONTACTENOS</h6>
           <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 100px;">
           <p><i class="fas fa-home mr-3"></i> PLANADAS, CP 735070 </p>
@@ -112,4 +126,5 @@
   <script type="text/javascript" src="frameworks/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
   <script src="librerias/popper.min.js"></script>
   <script src="librerias/fontawesome-free-5.15.1-web/js/fontawesome.min.js"></script>
+  <script src="js/descripcionProducto.js"></script>
 </html>

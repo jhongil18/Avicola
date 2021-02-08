@@ -86,9 +86,10 @@ class tiendaDAO extends db{
             
     }******/
 
-    public function getProducto(){
-        if($idProducto = $_REQUEST['idProducto'] > 0){
-            $sql = "SELECT * FROM producto WHERE idProducto = $idProducto AND estado = 'A'"; // Consulto 
+    public function getProducto($idProducto = null){
+        
+        if($idProducto > 0){
+            $sql = "SELECT * FROM producto WHERE idProducto = $idProducto AND estado = 'A'";
             $result = $this->query($sql);
             if (mysqli_num_rows($result) > 0){
                 if($row = mysqli_fetch_assoc($result)){

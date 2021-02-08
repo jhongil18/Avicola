@@ -49,7 +49,7 @@
             <div class="col"></div>
             <div class="col-8">
                 <h2>Ofrecemos aves en diferentes etapas de crecimiento observa mas detalles</h2>
-                <a href="tienda.php" class="btn btn-info btn-lg" role="button"> AQUI</a>
+                <a href="productos.php" class="btn btn-info btn-lg" role="button"> AQUI</a>
             </div>
             <div class="col"></div>
           </div>
@@ -67,7 +67,7 @@
             <div class="card-body">
               <h4 class="card-title"> 1 Semana </h4>
               <div class="precio"> VALOR UND. 1.500 $ </div>
-              <a href="tienda.php" class="stretched-link"></a>
+              <a href="productos.php" class="stretched-link"></a>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
             <div class="card-body">
               <h4 class="card-title"> 5 Semanas </h4>
               <div class="precio"> VALOR UND. 9.500 $ </div>
-              <a href="tienda.php" class="stretched-link"></a>
+              <a href="productos.php" class="stretched-link"></a>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@
             <div class="card-body">
               <h4 class="card-title"> 10 Semenas </h4>
               <div class="precio">VALOR UND. 18.500 $</div>
-              <a href="tienda.php" class="stretched-link"></a>
+              <a href="productos.php" class="stretched-link"></a>
             </div>
           </div>
         </div>

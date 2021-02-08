@@ -6,7 +6,7 @@ class db extends mysqli {
     private $passwd;
     private $dbname;
     
-    function __construct($host='localhost', $username='root', $passwd='12345678', $dbname='avicola') {
+    function __construct($host='localhost', $username='root', $passwd='', $dbname='avicola') {
         $this->host = $host;
         $this->username = $username;
         $this->passwd = $passwd;

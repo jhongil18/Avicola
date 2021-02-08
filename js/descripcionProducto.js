@@ -15,23 +15,9 @@ function descripcionProducto(idProducto){
                     let nombre = json[0]['nombre'];
                     let valor = json[0]['valor'];
                     let descripcion = json[0]['descripcion'];
-
-                    $("#contenedor").load("compras.php",{img, nombre}); 
-
-                    //window.location.href="./compras.php?imagen=img";
+                    
+                    window.location.href = "../Avicola/tienda.php?img="+img+"&nombre="+nombre+"&valor="+valor+"&descripcion="+descripcion;
 	
-                    //$(document).ready(function(){
-                        //$("#boton").click(function(){
-                            //$.post("./compras.php", {img, nombre, valor, descripcion}, function(htmlexterno){
-                                //$("#cargaexterna").html(htmlexterno);
-                            //});
-                        //});
-                    //});
-
-                    //$.post("./compras.php", {img, nombre, valor, descripcion}, function(resultado){
-                        //console.log(resultado);
-                        //$("#cargaexterna").html(htmlexterno);
-                    //});
                 }
             }
         });
