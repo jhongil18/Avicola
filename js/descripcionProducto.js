@@ -10,13 +10,14 @@ function descripcionProducto(idProducto){
             success: function(respuesta) {
                 let json = respuesta; // Obtengo la respuesta en la variable json
                 console.log(json);
-                if(json !=''){ 
+                if(json !=''){
+                    let idProducto = json[0]['idProducto']; 
                     let img = json[0]['img']; 
                     let nombre = json[0]['nombre'];
                     let valor = json[0]['valor'];
                     let descripcion = json[0]['descripcion'];
                     
-                    window.location.href = "../Avicola/tienda.php?img="+img+"&nombre="+nombre+"&valor="+valor+"&descripcion="+descripcion;
+                    window.location.href = "../Avicola/tienda.php?idProducto="+idProducto+"&img="+img+"&nombre="+nombre+"&valor="+valor+"&descripcion="+descripcion;
 	
                 }
             }

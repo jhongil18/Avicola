@@ -93,11 +93,13 @@ class tiendaDAO extends db{
             $result = $this->query($sql);
             if (mysqli_num_rows($result) > 0){
                 if($row = mysqli_fetch_assoc($result)){
+                    $idProducto = $row['idProducto'];
                     $img = $row['img'];
                     $nombre = $row['nombre'];
                     $valor = $row['valor'];
                     $descripcion = $row['descripcion'];
 
+                    $data[0]['idProducto'] = $idProducto;
                     $data[0]['img'] = $img;
                     $data[0]['nombre'] = $nombre;
                     $data[0]['valor'] = $valor;
@@ -115,5 +117,30 @@ class tiendaDAO extends db{
                 return $result;
             }
         }
-    }    
+    }
+    
+    public function setCarrito($idProducto){
+
+        $fecha = date('Y-m-d h:i:s');
+        $insert = "INSERT INTO compra (fechaCompra, valor, estado) VALUES ('$fecha', '0', 'A')";
+        $result = $this->query($insert);
+
+        $select = "SELECT * FROM compra WHERE ";
+        $result = $this->query($select);
+        echo 'llego: '.$result;
+
+        if($result > 0 ){
+            
+                $idCompra = $result[0]['idCompra'];
+
+                $insert = "INSERT INTO detallecompra (idProducto, idCompra, cantidad, valor, total) 
+                VALUES ('$idProducto', $idCompra, '0', '0', '0')";
+                $result = $this->query($insert);
+            
+                $select = "SELECT * FROM detallecompra WHERE idCompra = $idCompra";
+                $result = $this->query($insert);
+                return $result;
+            
+        }
+    }
 }

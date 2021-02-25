@@ -50,7 +50,7 @@
         <div class="animated fadeInDown">
           <div class="row">
             <?php
-              if(isset($_GET['img']) && isset($_GET['nombre']) && isset($_GET['valor']) && isset($_GET['descripcion'])){ 
+              if(isset($_GET['idProducto']) && isset($_GET['img']) && isset($_GET['nombre']) && isset($_GET['valor']) && isset($_GET['descripcion'])){ 
                 $img = filter_input(INPUT_GET,"img",FILTER_SANITIZE_STRING);
                 $nombre = filter_input(INPUT_GET,"nombre",FILTER_SANITIZE_STRING);
                 $valor = filter_input(INPUT_GET,"valor",FILTER_SANITIZE_STRING);
@@ -67,7 +67,7 @@
                   <h5><b>Precio</b></h5>
                   <div class="precio"> <?php echo $valor; ?> $</div>
                   <br><a href="productos.php" class="btn btn-secondary">Ver mas Productos</a>
-                  <a href="" class="btn btn-info">Agregar al Carrito</a>
+                  <button class="btn btn-info" id="btnAgregarCarrito" onclick="agregarCarrito(<?php echo $_GET['idProducto']; ?>)">Agregar al Carrito</button>
                 </div>
         <?php }?>
           </div>
@@ -127,4 +127,5 @@
   <script src="librerias/popper.min.js"></script>
   <script src="librerias/fontawesome-free-5.15.1-web/js/fontawesome.min.js"></script>
   <script src="js/descripcionProducto.js"></script>
+  <script src="js/agregarCarrito.js"></script>
 </html>
