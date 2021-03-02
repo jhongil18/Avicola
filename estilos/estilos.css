@@ -206,3 +206,14 @@ h2{
     padding: 50px;
     line-height: 1.5;
 }
+
+/************** Carrito De Compras ****************/
+.carritoCompras{
+    margin-top: 25px;
+}
+
+#cantidadProducto{
+    width: 50px;
+    height: 30px;
+    text-align: center;
+}

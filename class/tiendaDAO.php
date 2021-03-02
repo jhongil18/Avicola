@@ -5,6 +5,7 @@ class tiendaDAO extends db{
         parent::__construct();
     }
 
+    // Funcion Que Obtiene El Max_consecutive
     public function getMaxId($Table,$Column){
         $increment = 1;
     
@@ -19,72 +20,6 @@ class tiendaDAO extends db{
         }
         return $max_consecutive += $increment;  
 	}
-
-    
-    /******public function crearTienda(tiendaDTO $tienda){
-         
-        $nombre = $tienda->getNombre();
-        $idProducto = $this->getMaxId('producto','idProducto');
-
-        $select="SELECT tienda_id FROM tienda WHERE nombre = '$nombre'";
-        $result=$this->query($select);
-
-        if(mysqli_num_rows($result)>0){
-            return 2;
-        }else{
-
-                $sql="INSERT INTO tienda (tienda_id,nombre) VALUES ($tienda_id,'$nombre')";
-                
-                $result=$this->query($sql);
-                
-                if($result>0){
-                       return 1;
-                }else{
-                    throw new Exception("No se pudo crear la tienda, el motivo: ".$this->error);
-                }
-        }
-    }*****/
-
-    /***public function Actualizartienda(tiendaDTO $tienda){
-
-        $tienda_id = $tienda->gettienda_id();
-        $nombre = $tienda->getNombre();
-
-                $update="UPDATE tienda SET nombre='$nombre' WHERE tienda_id=$tienda_id";
-                $result=$this->query($update);
-                
-                if($result>0){
-                        return 1;
-                }else{
-                    throw new Exception("No se pudo actualizar la tienda, el motivo: ".$this->error);
-                }
-        
-    }***/
-
-
-    /*****public function eliminartienda(tiendaDTO $tienda){
-
-            $tienda_id = $tienda->gettienda_id();
-
-            $select="SELECT tienda_id FROM tienda WHERE tienda_id = $tienda_id";
-            $result=$this->query($select);
-
-            if(mysqli_num_rows($result)>0){
-
-                $sql="DELETE FROM tienda WHERE tienda_id=$tienda_id";
-                $result=$this->query($sql);
-                
-                if($result>0){
-                        return 1;
-                }else{
-                    throw new Exception("No se pudo eliminar la tienda, el motivo: ".$this->error);
-                }
-
-            }else{
-                    throw new Exception("No se pudo eliminar la tienda ya que no existe, el motivo: ".$this->error);
-            }
-            
-    }******/
 
     public function getProducto($idProducto = null){
         
@@ -109,8 +44,9 @@ class tiendaDAO extends db{
                 };
             }
 
+        // Consulto Todos Productos Para Mostrarlos En Productos.php
         }else{
-            $sql = "SELECT * FROM producto WHERE estado = 'A'"; // Consulto todos productos para mostrarlos en productos.php
+            $sql = "SELECT * FROM producto WHERE estado = 'A'";
             $result = $this->query($sql);
             
             if (mysqli_num_rows($result) > 0){
@@ -119,28 +55,96 @@ class tiendaDAO extends db{
         }
     }
     
-    public function setCarrito($idProducto){
+    public function setCarrito($idProducto = null){
 
-        $fecha = date('Y-m-d h:i:s');
-        $insert = "INSERT INTO compra (fechaCompra, valor, estado) VALUES ('$fecha', '0', 'A')";
-        $result = $this->query($insert);
+        if($idProducto > 0){
+            $select = "SELECT * FROM compra WHERE estado = 'A'";
+            $result = $this->query($select);
+            // Inserto Compra
+            if (mysqli_num_rows($result) > 0){
+                if($row = mysqli_fetch_assoc($result)){
+                    $estado = $row['estado'];
+                    
+                    if($estado != 'A' or ''){
+                        $idCompra = $this -> getMaxId('compra','idCompra');
+                        $fecha = date('Y-m-d h:i:s');
+                        $insert = "INSERT INTO compra (idCompra, fechaCompra, valor, estado) VALUES ($idCompra, '$fecha', '0', 'A')";
+                        $result = $this->query($insert);
+                    
+                    }else{
+                        $idCompra = $row['idCompra'];
+                    }
+                }
 
-        $select = "SELECT * FROM compra WHERE ";
-        $result = $this->query($select);
-        echo 'llego: '.$result;
-
-        if($result > 0 ){
-            
-                $idCompra = $result[0]['idCompra'];
-
-                $insert = "INSERT INTO detallecompra (idProducto, idCompra, cantidad, valor, total) 
-                VALUES ('$idProducto', $idCompra, '0', '0', '0')";
+            // Inserto Compra Si No Existen
+            }else{
+                $idCompra = $this -> getMaxId('compra','idCompra');
+                $fecha = date('Y-m-d h:i:s');
+                $insert = "INSERT INTO compra (idCompra, fechaCompra, valor, estado) VALUES ($idCompra, '$fecha', '0', 'A')";
                 $result = $this->query($insert);
-            
-                $select = "SELECT * FROM detallecompra WHERE idCompra = $idCompra";
+            }
+
+            // Inserto Detalles De Compra
+            if($result){
+                $id_detalleCompra = $this -> getMaxId('detallecompra','id_detalleCompra');
+                
+                $insert = "INSERT INTO detallecompra (id_detalleCompra, idProducto, idCompra, cantidad, valor, total) 
+                VALUES ($id_detalleCompra, $idProducto, $idCompra, '0', '0', '0')";
                 $result = $this->query($insert);
+
+                if($result > 0){
+                    return $idCompra;
+                }else{
+                    throw new Exception("No se pudo insertar el detalle de la compra: ".$this->error);    
+                }
+            }else{
+                throw new Exception("No se pudo insertar la compra: ".$this->error);    
+            }
+
+        // Consulto El Producto Para Mostrar En carritoCompras.php
+        }else{
+            $id = $this -> getMaxId('detallecompra','id_detalleCompra');
+            $id_detalleCompra = $id - 1;
+
+            $select = "SELECT p.*,
+                              d.id_detalleCompra AS id_detalleCompra 
+                       FROM detallecompra d, producto p, compra c 
+                       WHERE d.idProducto = p.idproducto AND d.idCompra = c.idCompra AND c.estado = 'A'";
+            $result = $this->query($select);
+
+            if(mysqli_num_rows($result) > 0){
                 return $result;
+            }else{
+                throw new Exception("Error en el select: ".$this->error);    
+            }
+        }
+    }
+
+    // Finalizo Compra
+    public function updateCompra($idCompra,$idProducto,$valor,$cantidad,$total){
+        if($idCompra > 0){
+            $update = "UPDATE compra SET estado = 'F', valor = $total WHERE idCompra = $idCompra";
+            $result = $this->query($update);
+
+            $update = "UPDATE detallecompra SET cantidad = $cantidad, valor = $valor, total = $total
+                       WHERE idCompra = $idCompra";
+            $result = $this->query($update);
+
+            return $result;
+        }else{
+            throw new Exception("No se pudo actualizar la compra: ".$this->error); 
+        }
+    }
+
+    // Elimino El DetalleCompra
+    public function deletedetalleCompra($id_detalleCompra){
+        if($id_detalleCompra > 0){
+            $delete = "DELETE FROM detallecompra WHERE id_detalleCompra = $id_detalleCompra";
+            $result = $this->query($delete);
             
+            return $result;
+        }else{
+            throw new Exception("No se pudo eliminar el detalleCompra: ".$this->error);
         }
     }
 }

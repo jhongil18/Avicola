@@ -13,7 +13,7 @@
   <body>
     <!-- Navbar -->
     <div class="navbar">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <nav class="navbar navbar-inverse navbar-expand-md navbar-dark fixed-top">
           <ul class="nav navbar-nav">
             <a class="navbar-brand" href="#">
               <img src="img/iconoNavbar.png" alt="Logo" style="width:45px;">
@@ -23,7 +23,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="index.php">Inicio</a>
               </li>
@@ -39,7 +39,12 @@
               <li class="nav-item active">
                 <a class="nav-link" href="tienda.php">Compras</a>
               </li>
-            <ul>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <!--<a class="navbar-brand" href="carritoCompras.php"><i class="fas fa-cart-plus"></i></a>-->         
+              </li>
+            </ul>
           </div>  
         </nav>
     </div>
@@ -126,6 +131,8 @@
   <script type="text/javascript" src="frameworks/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
   <script src="librerias/popper.min.js"></script>
   <script src="librerias/fontawesome-free-5.15.1-web/js/fontawesome.min.js"></script>
+  <script src="librerias/package/dist/sweetalert2.all.min.js"></script>
   <script src="js/descripcionProducto.js"></script>
   <script src="js/agregarCarrito.js"></script>
+  <script src="js/chat.js"></script>
 </html>

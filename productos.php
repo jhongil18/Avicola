@@ -3,7 +3,7 @@
     require("./class/tiendaDAO.php");
     
     $tiendaDAO = new tiendaDAO(); 
-    $productos = $tiendaDAO->getProducto(); // Inserto en la variable $productos La funcion de getProducto
+    $productos = $tiendaDAO->getProducto();
 ?>
 
 <!DOCTYPE html>
